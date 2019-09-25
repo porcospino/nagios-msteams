@@ -27,7 +27,7 @@ my %nagios;
 my @sections;
 my @actions;
 my @targets;
-my $webhook = "https://outlook.office365.com/webhook/MISSING";
+my $webhook = "";
 my $nagios_url = "";
 my %color = ( 'OK' => '008000', 'WARNING' => 'ffff00', 'UNKNOWN' => '808080','CRITICAL' => 'ff0000',
               'UP' => '008000', 'DOWN' => 'ff0000', 'UNREACHABLE' => 'ff8700');
@@ -50,6 +50,10 @@ while ((my $k, my $v) = each %ENV) {
     next unless $k =~ /^(?:NAGIOS|ICINGA|NOTIFY)_(.*)$/;
     $nagios{$1} = $v;
     print STDERR "$1 is $nagios{$1}\n";
+}
+
+if (not length($webhook)) {
+   $webhook = $nagios{'PARAMETER_1'};
 }
 
 #

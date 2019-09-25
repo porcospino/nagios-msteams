@@ -97,6 +97,7 @@ my $json = encode_json \%event;
 #
 
 my $ua = LWP::UserAgent->new;
+$ua->env_proxy;
 $ua->timeout(15);
 
 my $req = HTTP::Request->new('POST', $webhook);

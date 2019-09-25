@@ -47,7 +47,7 @@ or die("Error in command line arguments\n");
 # Read Nagios events
 #
 while ((my $k, my $v) = each %ENV) {
-    next unless $k =~ /^(?:NAGIOS|ICINGA)_(.*)$/;
+    next unless $k =~ /^(?:NAGIOS|ICINGA|NOTIFY)_(.*)$/;
     $nagios{$1} = $v;
     print STDERR "$1 is $nagios{$1}\n";
 }
